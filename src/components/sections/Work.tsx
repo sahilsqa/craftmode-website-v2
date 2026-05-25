@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 
 const filters = ["All", "Posts", "Reels", "Branding", "Campaigns"];
 
@@ -10,15 +11,15 @@ interface WorkProps {
 }
 
 const workItems = [
-  { industry: "Fashion", type: "Posts", label: "Instagram Post", color: "from-rose-100 to-pink-100", size: "tall" },
-  { industry: "Café", type: "Branding", label: "Brand Identity", color: "from-amber-100 to-orange-100", size: "normal" },
-  { industry: "Fitness", type: "Reels", label: "Reel Cover", color: "from-emerald-100 to-teal-100", size: "normal" },
-  { industry: "Skincare", type: "Campaigns", label: "Campaign Visual", color: "from-violet-100 to-purple-100", size: "tall" },
-  { industry: "Real Estate", type: "Posts", label: "Property Post", color: "from-blue-100 to-indigo-100", size: "normal" },
-  { industry: "Lifestyle", type: "Reels", label: "Story Reel", color: "from-yellow-100 to-lime-100", size: "normal" },
-  { industry: "Salon", type: "Branding", label: "Logo & Colors", color: "from-fuchsia-100 to-pink-100", size: "normal" },
-  { industry: "Restaurant", type: "Campaigns", label: "Launch Campaign", color: "from-orange-100 to-red-100", size: "tall" },
-  { industry: "Ecommerce", type: "Posts", label: "Product Post", color: "from-cyan-100 to-sky-100", size: "normal" },
+  { industry: "Fashion", type: "Posts", label: "Instagram Post", size: "tall", src: "/assets/work-fashion-post.png" },
+  { industry: "Café", type: "Branding", label: "Brand Identity", size: "normal", src: "/assets/work-cafe-branding.png" },
+  { industry: "Fitness", type: "Reels", label: "Reel Cover", size: "normal", src: "/assets/work-fitness-reel.png" },
+  { industry: "Skincare", type: "Campaigns", label: "Campaign Visual", size: "tall", src: "/assets/work-skincare-campaign.png" },
+  { industry: "Real Estate", type: "Posts", label: "Property Post", size: "normal", src: "/assets/work-real-estate.png" },
+  { industry: "Lifestyle", type: "Reels", label: "Story Reel", size: "normal", src: "/assets/work-lifestyle.png" },
+  { industry: "Salon", type: "Branding", label: "Logo & Colors", size: "normal", src: "/assets/work-salon-branding.png" },
+  { industry: "Restaurant", type: "Campaigns", label: "Launch Campaign", size: "tall", src: "/assets/work-restaurant-campaign.png" },
+  { industry: "Ecommerce", type: "Posts", label: "Product Post", size: "normal", src: "/assets/work-ecommerce-product.png" },
 ];
 
 export default function Work({ onBookCall }: WorkProps) {
@@ -76,15 +77,22 @@ export default function Work({ onBookCall }: WorkProps) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className={`break-inside-avoid mb-4 bg-gradient-to-br ${item.color} border border-[#e5e5e5] rounded-2xl overflow-hidden group cursor-default ${
+              className={`break-inside-avoid mb-4 border border-[#e5e5e5] rounded-2xl overflow-hidden group cursor-default ${
                 item.size === "tall" ? "h-64" : "h-44"
               } relative`}
             >
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/10 to-transparent">
-                <p className="text-[10px] text-[#555555] font-medium">
+              <Image
+                src={item.src}
+                alt={`${item.industry} ${item.label}`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+                <p className="text-[10px] text-white/80 font-medium">
                   {item.industry}
                 </p>
-                <p className="text-xs font-semibold text-[#0a0a0a]">
+                <p className="text-xs font-semibold text-white">
                   {item.label}
                 </p>
               </div>

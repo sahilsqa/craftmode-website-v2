@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const industries = [
   "Fashion",
@@ -102,21 +103,30 @@ export default function Hero({ onBookCall }: HeroProps) {
           className="mt-16 flex justify-center gap-4 flex-wrap"
         >
           {[
-            { industry: "Café", type: "Instagram Post", color: "from-amber-50 to-orange-50" },
-            { industry: "Fitness", type: "Reel Cover", color: "from-emerald-50 to-teal-50" },
-            { industry: "Fashion", type: "Campaign", color: "from-rose-50 to-pink-50" },
-            { industry: "Skincare", type: "Story", color: "from-violet-50 to-purple-50" },
+            { industry: "Café", type: "Instagram Post", src: "/assets/hero-cafe.png" },
+            { industry: "Fitness", type: "Reel Cover", src: "/assets/hero-fitness.png" },
+            { industry: "Fashion", type: "Campaign", src: "/assets/hero-fashion.png" },
+            { industry: "Skincare", type: "Story", src: "/assets/hero-skincare.png" },
           ].map((card) => (
             <div
               key={card.industry}
-              className={`bg-gradient-to-br ${card.color} border border-[#e5e5e5] rounded-2xl w-36 h-48 flex flex-col justify-end p-3 shadow-sm`}
+              className="relative border border-[#e5e5e5] rounded-2xl w-36 h-48 overflow-hidden shadow-sm"
             >
-              <span className="text-[10px] text-[#555555] font-medium">
-                {card.industry}
-              </span>
-              <span className="text-xs font-semibold text-[#0a0a0a] leading-tight">
-                {card.type}
-              </span>
+              <Image
+                src={card.src}
+                alt={`${card.industry} ${card.type}`}
+                fill
+                className="object-cover"
+                sizes="144px"
+              />
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/50 to-transparent">
+                <span className="text-[10px] text-white/80 font-medium block">
+                  {card.industry}
+                </span>
+                <span className="text-xs font-semibold text-white leading-tight block">
+                  {card.type}
+                </span>
+              </div>
             </div>
           ))}
         </motion.div>
