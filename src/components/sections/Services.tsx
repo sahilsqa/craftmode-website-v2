@@ -11,6 +11,8 @@ const services = [
       "Consistent content creation and publishing across your platforms. We handle the strategy, scheduling, and execution — every single week.",
     gradient: "from-blue-50 to-indigo-50",
     iconColor: "text-indigo-600",
+    tagColor: "bg-indigo-50 text-indigo-700 border-indigo-100",
+    deliverables: ["Content Calendar", "30 posts/month", "Scheduling", "Engagement Reports"],
   },
   {
     icon: Sparkles,
@@ -19,6 +21,8 @@ const services = [
       "Posts, reels, captions, and campaigns — produced at speed with AI and refined by our creative team. Quality without compromise.",
     gradient: "from-violet-50 to-purple-50",
     iconColor: "text-violet-600",
+    tagColor: "bg-violet-50 text-violet-700 border-violet-100",
+    deliverables: ["Instagram Posts", "TikTok Reels", "Captions", "Stories", "Campaign Visuals"],
   },
   {
     icon: Zap,
@@ -27,6 +31,8 @@ const services = [
       "We build workflows that remove the manual, repetitive effort from content creation — without ever sacrificing your brand quality.",
     gradient: "from-amber-50 to-orange-50",
     iconColor: "text-amber-600",
+    tagColor: "bg-amber-50 text-amber-700 border-amber-100",
+    deliverables: ["Auto-Publish", "Brand Templates", "Content Batching", "Approval Workflow"],
   },
   {
     icon: Star,
@@ -35,6 +41,8 @@ const services = [
       "We help you present your business professionally and memorably online — with a consistent voice, aesthetic, and presence that builds trust.",
     gradient: "from-emerald-50 to-teal-50",
     iconColor: "text-emerald-600",
+    tagColor: "bg-emerald-50 text-emerald-700 border-emerald-100",
+    deliverables: ["Brand Voice Guide", "Visual Identity", "Platform Bios", "Hashtag Strategy"],
   },
 ];
 
@@ -71,7 +79,7 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className={`bg-gradient-to-br ${s.gradient} border border-[#e5e5e5] rounded-2xl p-8 cursor-default`}
+                className={`bg-gradient-to-br ${s.gradient} border border-[#e5e5e5] rounded-2xl p-8 cursor-default flex flex-col`}
               >
                 <div className="w-11 h-11 bg-white rounded-xl flex items-center justify-center mb-6 shadow-sm">
                   <Icon size={20} className={s.iconColor} />
@@ -79,9 +87,20 @@ export default function Services() {
                 <h3 className="font-semibold text-[#0a0a0a] text-lg mb-3">
                   {s.title}
                 </h3>
-                <p className="text-sm text-[#555555] leading-relaxed">
+                <p className="text-sm text-[#555555] leading-relaxed flex-1">
                   {s.description}
                 </p>
+                {/* Deliverable tags */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {s.deliverables.map((d) => (
+                    <span
+                      key={d}
+                      className={`text-[11px] border rounded-full px-3 py-1 font-medium ${s.tagColor}`}
+                    >
+                      {d}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             );
           })}
